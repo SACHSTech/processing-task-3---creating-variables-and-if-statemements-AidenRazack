@@ -17,7 +17,7 @@ public class Sketch extends PApplet {
 	// put your size call here
     size(400, 400);
 
-    // Random x and y coordinate within the canvas width and height
+  // Random x and y coordinate within the canvas width and height
     x = (int) random(width);
     y = (int) random(height);
   }
@@ -58,5 +58,10 @@ public class Sketch extends PApplet {
 
     // Draw mouth
     arc(x, y + 40, 100, 80, 0, PI); 
+
+    // Display current time
+    fill(0);
+    textSize(16);
+    text("Current Time: " + hour() + ":" + nf(minute(), 2) + ":" + nf(second(), 2), 20, 20);
   }
 }
