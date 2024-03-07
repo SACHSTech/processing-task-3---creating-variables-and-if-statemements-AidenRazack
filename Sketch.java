@@ -50,7 +50,6 @@ public class Sketch extends PApplet {
     }
 
     // Draw eyes
-    
     ellipse(intRandomXVal - 30, intRandomYVal - 30, 40, 40); 
     ellipse(intRandomXVal + 30, intRandomYVal - 30, 40, 40); 
 
