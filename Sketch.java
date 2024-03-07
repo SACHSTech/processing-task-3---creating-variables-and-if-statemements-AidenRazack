@@ -6,8 +6,8 @@ import processing.core.PApplet;
 public class Sketch extends PApplet {
 
   // Define variables
-	int x;
-  int y;
+	int intRandomXVal;
+  int intRandomYVal;
 	
   /**
    * Called once at the beginning of execution, put your size all in this method
@@ -17,22 +17,22 @@ public class Sketch extends PApplet {
 	// put your size call here
     size(400, 400);
 
-  // Random x and y coordinate within the canvas width and height
-    x = (int) random(width);
-    y = (int) random(height);
+    // Set random x and y coordinate within the canvas width and height
+    intRandomXVal = (int) random(width);
+    intRandomYVal = (int) random(height);
   }
   
   /**
-  * Called repeatedly, anything drawn to the screen goes here
-  */
+   * Called repeatedly, anything drawn to the screen goes here
+   */
   public void draw() {
   
     // Change background color based on the position of the face
-    if (x < width/2 && y < height/2) {
+    if (intRandomXVal < width/2 && intRandomYVal < height/2) {
       background(255, 204, 153);
-    } else if (x >= width/2 && y < height/2) {
+    } else if (intRandomXVal >= width/2 && intRandomYVal < height/2) {
       background(153, 204, 255); 
-    } else if (x < width/2 && y >= height/2) {
+    } else if (intRandomXVal < width/2 && intRandomYVal >= height/2) {
       background(255, 153, 204); 
     } else {
       background(153, 255, 204); 
@@ -40,24 +40,31 @@ public class Sketch extends PApplet {
 
     // Draw head
     fill(255, 204, 153); 
-    ellipse(x, y, 200, 200); 
+    ellipse(intRandomXVal, intRandomYVal, 200, 200); 
+
+    // Change eye color if it's on the left side, but not if it's on the right side
+    if (intRandomXVal < width / 2 || !(intRandomXVal >= width / 2 || intRandomYVal < height / 2)) {
+      fill(255); 
+    } else {
+      fill(153); 
+    }
 
     // Draw eyes
-    fill(255); 
-    ellipse(x - 30, y - 30, 40, 40); 
-    ellipse(x + 30, y - 30, 40, 40); 
+    
+    ellipse(intRandomXVal - 30, intRandomYVal - 30, 40, 40); 
+    ellipse(intRandomXVal + 30, intRandomYVal - 30, 40, 40); 
 
     // Draw pupils
     fill(0); 
-    ellipse(x - 30, y - 30, 20, 20); 
-    ellipse(x + 30, y - 30, 20, 20); 
+    ellipse(intRandomXVal - 30, intRandomYVal - 30, 20, 20); 
+    ellipse(intRandomXVal + 30, intRandomYVal - 30, 20, 20); 
 
     // Draw nose
     fill(255, 102, 102);
-    triangle(x, y - 10, x - 10, y + 20, x + 10, y + 20); 
+    triangle(intRandomXVal, intRandomYVal - 10, intRandomXVal - 10, intRandomYVal + 20, intRandomXVal + 10, intRandomYVal + 20); 
 
     // Draw mouth
-    arc(x, y + 40, 100, 80, 0, PI); 
+    arc(intRandomXVal, intRandomYVal + 40, 100, 80, 0, PI); 
 
     // Display current time
     fill(0);
